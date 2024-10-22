@@ -1,12 +1,13 @@
 @extends('layouts.template')
+
 @section('content')
     <div class="card card-outline card-primary">
         <div class="card-header">
-            <h3 class="card-title">{{ $page->title }}</h3>
+            <div class="card-title">{{ $page->title }}</div>
             <div class="card-tools">
-                <button onclick="modalAction('{{ url('/user/import') }}')" class="btn btn-info">Import Kategori</button>
-                <a href="{{ url('/user/export_excel') }}" class="btn btn-primary"><i class="fa fa-fileexcel"></i> Export kategori</a>
-                <a href="{{ url('/user/export_pdf') }}" class="btn btn-warning"><i class="fa fa-filepdf"></i> Export Kategori</a>
+                <button onclick="modalAction('{{ url('/user/import') }}')" class="btn btn-info">Import User</button>
+                <a href="{{ url('/user/export_excel') }}" class="btn btn-primary"><i class="fa fa-fileexcel"></i> Export User</a>
+                <a href="{{ url('/user/export_pdf') }}" class="btn btn-warning"><i class="fa fa-filepdf"></i> Export User</a>
                 <button onclick="modalAction('{{ url('/user/create_ajax') }}')" class="btn btn-success">Tambah Data (Ajax)</button>
             </div>
         </div>
@@ -19,10 +20,10 @@
             @endif
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-group row">
+                    <div class="form-grub row">
                         <label class="col-1 control-label col-form-label">Filter:</label>
                         <div class="col-3">
-                            <select class="form-control" id="level_id" name="level_id" required>
+                            <select class="form-control" name="level_id" id="level_id" required>
                                 <option value="">- Semua -</option>
                                 @foreach ($level as $item)
                                     <option value="{{ $item->level_id }}">{{ $item->level_nama }}</option>
@@ -40,16 +41,21 @@
                         <th>Username</th>
                         <th>Nama</th>
                         <th>Level Pengguna</th>
+                        <th>Foto</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
             </table>
         </div>
     </div>
-    <div id="myModal" class="modal fade animate shake" tabindex="-1" role="dialog" databackdrop="static" data-keyboard="false" data-width="75%" aria-hidden="true"></div>
 @endsection
+
+<div id="myModal" class="modal fade animate shake" tabindex="-1" role="dialog" databackdrop="static"
+    data-keyboard="false" data-width="75%" aria-hidden="true"></div>
+
 @push('css')
 @endpush
+
 @push('js')
     <script>
         function modalAction(url = '') {
@@ -57,6 +63,7 @@
                 $('#myModal').modal('show');
             });
         }
+
         var dataUser;
         $(document).ready(function() {
             dataUser = $('#table_user').DataTable({
@@ -70,8 +77,7 @@
                         d.level_id = $('#level_id').val();
                     }
                 },
-                columns: [{
-                    // nomor urut dari laravel datatable addIndexColumn()
+                columns: [{ // nomor urut dari laravel datatable addIndexColumn()
                     data: "DT_RowIndex",
                     className: "text-center",
                     orderable: false,
@@ -95,6 +101,12 @@
                     orderable: false,
                     searchable: false
                 }, {
+                    data: "foto",
+                    className: "",
+                    width: "14%",
+                    orderable: false,
+                    searchable: false
+                }, {
                     data: "aksi",
                     className: "",
                     orderable: false,
@@ -103,7 +115,7 @@
             });
             $('#level_id').on('change', function() {
                 dataUser.ajax.reload();
-            });
+            })
         });
     </script>
 @endpush
