@@ -10,17 +10,17 @@
             </div>
         </div>
     </div>
-    <!-- Sidebar Menu-->
+    <!-- Sidebar Menu -->
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-                <a href="{{ url('/') }}" class="nav-link {{ $activeMenu == 'dashboard' ? 'active' : '' }} ">
+                <a href="{{ url('/dashboard') }}" class="nav-link {{ $activeMenu == 'dashboard' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('/profile') }}" class="nav-link {{ $activeMenu == 'profile' ? 'active' : '' }} ">
+                <a href="{{ url('/profile') }}" class="nav-link {{ $activeMenu == 'profile' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-user-cog"></i>
                     <p>Profile</p>
                 </a>
@@ -46,11 +46,11 @@
             </li>
             <li class="nav-header">Data Barang</li>
             <li class="nav-item">
-                <a href="{{ url('/kategori') }}" class="nav-link {{ $activeMenu == 'kategori' ? 'active' : '' }} ">
+                <a href="{{ url('/kategori') }}" class="nav-link {{ $activeMenu == 'kategori' ? 'active' : '' }}">
                     <i class="nav-icon far fa-bookmark"></i>
                     <p>Kategori Barang</p>
                 </a>
-                </11>
+            </li>
             <li class="nav-item">
                 <a href="{{ url('/barang') }}" class="nav-link {{ $activeMenu == 'barang' ? 'active' : '' }}">
                     <i class="nav-icon far fa-list-alt"></i>
@@ -58,26 +58,41 @@
                 </a>
             </li>
             <li class="nav-header">Data Transaksi</li>
-            <li class="nav-item">
+                        <li class="nav-item">
                 <a href="{{ url('/stok') }}" class="nav-link {{ $activeMenu == 'stok' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-cubes"></i>
                     <p>Stok Barang</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{ url('/barang') }}" class="nav-link {{ $activeMenu == 'penjualan' ? 'active' : '' }}">
+            <li class="nav-item has-treeview {{ $activeMenu == 'penjualan' || $activeMenu == 'penjualan_detail' ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link {{ $activeMenu == 'penjualan' || $activeMenu == 'penjualan_detail' ? 'active' : '' }}">
                     <i class="nav-icon fas fa-cash-register"></i>
-                    <p>Transaksi Penjualan</p>
+                    <p>
+                        Transaksi Penjualan
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
                 </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ url('/penjualan') }}" class="nav-link {{ $activeMenu == 'penjualan' ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Penjualan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/penjualan_detail') }}" class="nav-link {{ $activeMenu == 'penjualan_detail' ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Penjualan Detail</p>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item">
-                <a href="{{ url('logout') }}" class="nav-link"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <a href="{{ url('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="nav-icon fas fa-sign-out-alt"></i>
                     <p>Logout</p>
                 </a>
-                <form id="logout-form" action="{{ url('logout') }}" method="GET" style="display: none;">
-                </form>
+                <form id="logout-form" action="{{ url('logout') }}" method="GET" style="display: none;"></form>
             </li>
         </ul>
     </nav>

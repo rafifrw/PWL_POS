@@ -2,53 +2,49 @@
 @section('content')
 <div id="myModal" class="modal fade animate shake" tabindex="-1" role="dialog" data-backdrop="static"
     data-keyboard="false" aria-hidden="true"></div>
-<div class="container mt-5 p-4 bg-light rounded">
-    <div class="row">
+<div class="container mt-3 p-3 bg-light rounded">
+    <div class="text-center">
         <!-- Profile Image and Edit Button -->
-        <div class="col-md-4 text-center">
-            <div class="p-4">
-                <div class="mb-4">
-                    <img class="rounded-circle border" width="200px" src="{{ asset($user->foto) }}" alt="User Image">
-                </div>
-                <button class="btn btn-outline-primary w-75" onclick="modalAction('{{ url('/profile/' . session('user_id') . '/edit_foto') }}')">
-                    <i class="fas fa-camera"></i> Edit Foto
-                </button>
+        <div class="p-4">
+            <div class="mb-4">
+                <img class="rounded-circle border" width="200px" src="{{ asset($user->foto) }}" alt="User Image">
             </div>
+            <button class="btn btn-outline-primary w-50" onclick="modalAction('{{ url('/profile/' . session('user_id') . '/edit_foto') }}')">
+                <i class="fas fa-camera"></i> Edit Foto
+            </button>
         </div>
 
         <!-- Profile Information -->
-        <div class="col-md-8">
-            <div class="p-4">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="mb-0">Pengaturan Profil</h4>
-                    <button class="btn btn-outline-success" onclick="modalAction('{{ url('/profile/' . session('user_id') . '/edit_ajax') }}')">
-                        <i class="fas fa-edit"></i> Edit Profile
-                    </button>
-                </div>
-                <div class="row mt-3">
-                    <table class="table table-bordered bg-white shadow-sm">
-                        <tr>
-                            <th>ID Pengguna</th>
-                            <td>{{ $user->user_id }}</td>
-                        </tr>
-                        <tr>
-                            <th>Level</th>
-                            <td>{{ $user->level->level_nama }}</td>
-                        </tr>
-                        <tr>
-                            <th>Username</th>
-                            <td>{{ $user->username }}</td>
-                        </tr>
-                        <tr>
-                            <th>Nama Lengkap</th>
-                            <td>{{ $user->nama }}</td>
-                        </tr>
-                        <tr>
-                            <th>Password</th>
-                            <td><span class="text-muted">********</span></td>
-                        </tr>
-                    </table>
-                </div>
+        <div class="p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="mb-0">Pengaturan Profile</h4>
+                <button class="btn btn-outline-success" onclick="modalAction('{{ url('/profile/' . session('user_id') . '/edit_ajax') }}')">
+                    <i class="fas fa-edit"></i> Edit Profile
+                </button>
+            </div>
+            <div class="row mt-3">
+                <table class="table table-bordered bg-white shadow-sm">
+                    <tr>
+                        <th>ID Pengguna</th>
+                        <td>{{ $user->user_id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Level</th>
+                        <td>{{ $user->level->level_nama }}</td>
+                    </tr>
+                    <tr>
+                        <th>Username</th>
+                        <td>{{ $user->username }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nama Lengkap</th>
+                        <td>{{ $user->nama }}</td>
+                    </tr>
+                    <tr>
+                        <th>Password</th>
+                        <td><span class="text-muted">********</span></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
